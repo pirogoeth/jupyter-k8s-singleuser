@@ -25,7 +25,6 @@ Based on [jupyterhub/k8s-singleuser-sample:v0.4](https://hub.docker.com/r/jupyte
 - Jinja2
 - Keras
 - TensorFlow
-- Tangent
 
 
 ## Kernels

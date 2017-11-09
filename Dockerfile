@@ -1,4 +1,4 @@
-FROM jupyterhub/k8s-singleuser-sample:v0.4
+FROM jupyter/base-notebook:281505737f8a
 LABEL maintainer="Sean Johnson <pirogoeth@maio.me>"
 
 ARG JUPYTERHUB_VERSION=0.8
@@ -15,7 +15,12 @@ ENV GOROOT=/home/jovyan/.go/go
 ENV GOPATH=/home/jovyan/.go
 ENV PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
-RUN pip install -U pip numpy pandas scikit-learn scipy enum-compat matplotlib requests Jinja2 ipykernel ipython ipython-genutils ipywidgets MarkupSafe msgpack-python ordered-set keras tensorflow jupyter_dashboards tangent
+RUN pip install --no-cache jupyterhub==$JUPYTERHUB_VERSION && \
+        pip install -U pip numpy pandas scikit-learn \
+        scipy enum-compat matplotlib requests Jinja2 \
+        ipykernel ipython ipython-genutils ipywidgets \
+        MarkupSafe msgpack-python ordered-set keras \
+        tensorflow jupyter_dashboards
 RUN wget -L -O golang.tgz https://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz && \
         mkdir -p $GOROOT && \
         tar xzvf golang.tgz -C $GOPATH && \
