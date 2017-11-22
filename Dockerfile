@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook:281505737f8a
+FROM jupyter/minimal-notebook:e1677043235c
 LABEL maintainer="Sean Johnson <pirogoeth@maio.me>"
 
 ARG JUPYTERHUB_VERSION=0.8
