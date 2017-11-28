@@ -1,9 +1,10 @@
-ARG GOLANG_VERSION=1.9.1
 ARG JUPYTER_NOTEBOOK_BASE=033056e6d164
-ARG JUPYTERHUB_VERSION=0.8.1
 
 FROM jupyter/minimal-notebook:${JUPYTER_NOTEBOOK_BASE}
 LABEL maintainer="Sean Johnson <pirogoeth@maio.me>"
+
+ARG GOLANG_VERSION=1.9.1
+ARG JUPYTERHUB_VERSION=0.8.1
 
 USER root
 RUN apt-get update && \
@@ -17,7 +18,7 @@ ENV GOROOT=/home/jovyan/.go/go
 ENV GOPATH=/home/jovyan/.go
 ENV PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
-RUN pip install --no-cache jupyterhub==$JUPYTERHUB_VERSION && \
+RUN pip install --no-cache jupyterhub==${JUPYTERHUB_VERSION} && \
         pip install -U pip numpy pandas scikit-learn \
         scipy enum-compat matplotlib requests Jinja2 \
         ipykernel ipython ipython-genutils ipywidgets \
