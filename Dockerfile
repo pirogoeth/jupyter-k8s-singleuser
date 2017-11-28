@@ -1,7 +1,7 @@
 FROM jupyter/minimal-notebook:033056e6d164
 LABEL maintainer="Sean Johnson <pirogoeth@maio.me>"
 
-ARG JUPYTERHUB_VERSION=0.8
+ARG JUPYTERHUB_VERSION=0.8.1
 
 USER root
 RUN apt-get update && \
