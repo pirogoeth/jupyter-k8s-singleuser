@@ -23,7 +23,7 @@ RUN pip install --no-cache jupyterhub==${JUPYTERHUB_VERSION} && \
         scipy enum-compat matplotlib requests Jinja2 \
         ipykernel ipython ipython-genutils ipywidgets \
         MarkupSafe msgpack-python ordered-set keras \
-        tensorflow jupyter_dashboards nltk
+        tensorflow jupyter_dashboards nltk twitter
 RUN wget -L -O golang.tgz https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz && \
         mkdir -p $GOROOT && \
         tar xzvf golang.tgz -C $GOPATH && \
