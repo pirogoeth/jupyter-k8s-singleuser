@@ -1,4 +1,4 @@
-FROM jupyter/minimal-notebook:e1677043235c
+FROM jupyter/minimal-notebook:033056e6d164
 LABEL maintainer="Sean Johnson <pirogoeth@maio.me>"
 
 ARG JUPYTERHUB_VERSION=0.8
@@ -28,3 +28,7 @@ RUN wget -L -O golang.tgz https://storage.googleapis.com/golang/go1.9.1.linux-am
         go get github.com/gopherdata/gophernotes && \
         mkdir -p $(jupyter --data-dir)/kernels/gophernotes && \
         cp -rv $GOPATH/src/github.com/gopherdata/gophernotes/kernel/* $(jupyter --data-dir)/kernels/gophernotes/
+
+# Configure container startup
+ENTRYPOINT ["tini", "--"]
+CMD ["start-singleuser.sh"]
