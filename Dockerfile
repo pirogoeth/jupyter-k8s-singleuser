@@ -1,7 +1,9 @@
-FROM jupyter/minimal-notebook:033056e6d164
-LABEL maintainer="Sean Johnson <pirogoeth@maio.me>"
-
+ARG GOLANG_VERSION=1.9.1
+ARG JUPYTER_NOTEBOOK_BASE=033056e6d164
 ARG JUPYTERHUB_VERSION=0.8.1
+
+FROM jupyter/minimal-notebook:${JUPYTER_NOTEBOOK_BASE}
+LABEL maintainer="Sean Johnson <pirogoeth@maio.me>"
 
 USER root
 RUN apt-get update && \
@@ -20,8 +22,8 @@ RUN pip install --no-cache jupyterhub==$JUPYTERHUB_VERSION && \
         scipy enum-compat matplotlib requests Jinja2 \
         ipykernel ipython ipython-genutils ipywidgets \
         MarkupSafe msgpack-python ordered-set keras \
-        tensorflow jupyter_dashboards
-RUN wget -L -O golang.tgz https://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz && \
+        tensorflow jupyter_dashboards nltk
+RUN wget -L -O golang.tgz https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz && \
         mkdir -p $GOROOT && \
         tar xzvf golang.tgz -C $GOPATH && \
         rm golang.tgz && \
