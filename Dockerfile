@@ -1,4 +1,4 @@
-ARG JUPYTER_NOTEBOOK_BASE=033056e6d164
+ARG JUPYTER_NOTEBOOK_BASE=27ba57364579
 
 FROM jupyter/minimal-notebook:${JUPYTER_NOTEBOOK_BASE}
 LABEL maintainer="Sean Johnson <pirogoeth@maio.me>"
@@ -23,7 +23,8 @@ RUN pip install --no-cache jupyterhub==${JUPYTERHUB_VERSION} && \
         scipy enum-compat matplotlib requests Jinja2 \
         ipykernel ipython ipython-genutils ipywidgets \
         MarkupSafe msgpack-python ordered-set keras \
-        tensorflow jupyter_dashboards nltk twitter
+        tensorflow jupyter_dashboards nltk twitter \
+        vapeplot
 RUN wget -L -O golang.tgz https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz && \
         mkdir -p $GOROOT && \
         tar xzvf golang.tgz -C $GOPATH && \
