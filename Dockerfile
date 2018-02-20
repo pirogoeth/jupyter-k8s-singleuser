@@ -32,6 +32,7 @@ RUN wget -L -O golang.tgz https://storage.googleapis.com/golang/go${GOLANG_VERSI
         go get github.com/gopherdata/gophernotes && \
         mkdir -p $(jupyter --data-dir)/kernels/gophernotes && \
         cp -rv $GOPATH/src/github.com/gopherdata/gophernotes/kernel/* $(jupyter --data-dir)/kernels/gophernotes/
+RUN jupyter labextension install @jupyterlab/hub-extension
 
 # Configure container startup
 ENTRYPOINT ["tini", "--"]
